@@ -5,9 +5,11 @@
 Joystick Axis 1+ - port 3 go forward port 4 go reverse | launcher speed (adjustable) or arm move (adjustable)
 Joystick Axis 1- - port 3 reverse port 4 forward | launcher speed (adjustable) or arm move (adjustable)
 Joystick Axis 2+ and 2- - unmapped
-8R - Port 1 Reverse | transmission move
-8L - Port 1 Forward | transmission move
-Joystick Axis 3+ - Port 9 forward, Port 10 reverse
-Joystick Axis 3- - Port 9 reverse, Port 10 forward
-Joystick Axis 4+ - Ports 9 & 10 forward
-Joystick Axis 4- - Ports 9 & 10 reverse
+8R - Port 1 Reverse, Ports 5/6 & 7/8 alternate jiggle | transmission move | move port 1 at 50, ports 5/6 & 7/8 at 5
+8L - Port 1 Forward, Ports 5/6 & 7/8 alternate jiggle | transmission move | move port 1 at 50, ports 5/6 & 7/8 at 5
+Joystick Axis 3+ - Port 9 forward, Port 10 reverse | drive forward
+Joystick Axis 3- - Port 9 reverse, Port 10 forward | drive backwards
+Joystick Axis 4+ - Ports 9 & 10 forward | drive left
+Joystick Axis 4- - Ports 9 & 10 reverse | drive rights
+
+move intake/launcher in reverse at 80
