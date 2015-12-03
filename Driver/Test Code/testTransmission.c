@@ -1,19 +1,20 @@
-bool rightLiftMotorForward = true; //Start right lift motor forward for transmission
+bool interrupt = false; //Stop checking for buttons
+bool startRightLiftMotorForward = true; //Start right lift motor forward for transmission
 
 void jiggle() //Move motors attached to gears slowly to align gears with transitioning gears
 {
 	if(startRightLiftMotorForward	 == true) //Causes motors to change directions rapidly (see loop containing call for this function in the checkButtons task)
 	{
-		motor[RLift1] = 5; //Keep speeds very low, the gears only need to move a small amount
-		motor[RLift2] = 5;
-		motor[LLift1] = 5;
-		motor[LLift2] = 5;
+		motor[RLift1] = 10; //Keep speeds very low, the gears only need to move a small amount
+		motor[RLift2] = 10;
+		motor[LLift1] = 10;
+		motor[LLift2] = 10;
 	}else
 	{
-		motor[RLift1] = -5;
-		motor[RLift2] = -5;
-		motor[LLift1] = -5;
-		motor[LLift2] = -5;
+		motor[RLift1] = -10;
+		motor[RLift2] = -10;
+		motor[LLift1] = -10;
+		motor[LLift2] = -10;
 	}
 }
 
@@ -41,7 +42,6 @@ task controlTransmission() //Made a separate task for this so that the checkButt
 	while(interrupt == false) //Stops when interrupted
 	{
 		jiggle();
-		sleep(10); //Sleep so that motors have a short period of time to spin up (small time for low speeds, adjust as needed)
 		jiggleRunning = true; //Sets boolean variable so that transmission motor can start transitioning
 		if(startRightLiftMotorForward == true) //If-statement essentially just switches gears for jiggle as it loops, check here if that doesn't work
 		{
@@ -58,16 +58,16 @@ task controlTransmission() //Made a separate task for this so that the checkButt
 task checkButtons() //continuous task meant to continuously monitor buttons
 {
 	while(true){ //continuously runs since it is a task, stopped through main file
-		bool con8Dtoggle = false; //Controller button 8D pressed
+		bool con8Rtoggle = false; //Controller button 8R pressed
 		if(vexRT(btn8R) == true) //Check button state on controller
 		{
-			if(con8Dtoggle == false) //Checks to see if it has previously been toggled (transmission motors will be running, could check there instead to check for toggle)
+			if(con8Rtoggle == false) //Checks to see if it has previously been toggled (transmission motors will be running, could check there instead to check for toggle)
 			{
-				con8Dtoggle = true; //Changes toggle state
+				con8Rtoggle = true; //Changes toggle state
 				startTask(controlTransmission, 8);
 			}else
 			{
-				con8Dtoggle = false; //Returns toggle to off state, begins to shut off actions for when it is toggled
+				con8Rtoggle = false; //Returns toggle to off state, begins to shut off actions for when it is toggled
 				interrupt = true; //Should give controlTransmission task enough time to shut down correctly, add time if it doesn't work properly
 				stopTask(controlTransmission);
 			}

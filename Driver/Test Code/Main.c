@@ -13,7 +13,9 @@
 #include "testTransmission.c"
 task main()
 {
-	bool interrupt = false; //Stop checking for buttons
-
 	startTask(checkButtons);
+	while(true)
+	{
+
+}
 }
