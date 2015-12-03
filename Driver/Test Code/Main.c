@@ -18,13 +18,5 @@ task main()
 	bool con8Dtoggle = false; //Controller button 8D pressed
 	bool interrupt = false; //Stop checking for buttons
 
-	startTask(checkButtons, 8);
-	startTask(moveTransmission);
-	bool jiggleRunning = true;
-	while(interrupt == false)
-	{
-		jiggle();
-		sleep(200);
-	}
-	jiggleRunning = false;
+	startTask(checkButtons);
 }
