@@ -11,5 +11,11 @@ Joystick Axis 3+ - Port 9 forward, Port 10 reverse | drive forward
 Joystick Axis 3- - Port 9 reverse, Port 10 forward | drive backwards
 Joystick Axis 4+ - Ports 9 & 10 forward | drive left
 Joystick Axis 4- - Ports 9 & 10 reverse | drive rights
+Buttons 8U, 8D, 7U, 7D, 7R, and 7L are all currently unmapped (two will be used for whichever axis 1 is not used for, see ideas below)
 
 move intake/launcher in reverse at 80
+
+Ideas for buttons: 
+    button used for changing launcher speed and arm movement modes (assuming the axis will control both)
+    button pair used for increasing/decreasing launcher speed (assuming the launcher speed needs to be changeable)
+    button pair used for moving the arm up or down (assuming this will not be done on a joystick)
