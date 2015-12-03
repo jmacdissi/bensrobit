@@ -1,13 +1,19 @@
+bool rightLiftMotorForward = true; //Start right lift motor forward for transmission
+
 void jiggle() //Move motors attached to gears slowly to align gears with transitioning gears
 {
 	if(startRightLiftMotorForward	 == true) //Causes motors to change directions rapidly (see loop containing call for this function in the checkButtons task)
 	{
 		motor[RLift1] = 5; //Keep speeds very low, the gears only need to move a small amount
 		motor[RLift2] = 5;
-	}else
-	{
 		motor[LLift1] = 5;
 		motor[LLift2] = 5;
+	}else
+	{
+		motor[RLift1] = -5;
+		motor[RLift2] = -5;
+		motor[LLift1] = -5;
+		motor[LLift2] = -5;
 	}
 }
 
@@ -52,6 +58,7 @@ task controlTransmission() //Made a separate task for this so that the checkButt
 task checkButtons() //continuous task meant to continuously monitor buttons
 {
 	while(true){ //continuously runs since it is a task, stopped through main file
+		bool con8Dtoggle = false; //Controller button 8D pressed
 		if(vexRT(btn8R) == true) //Check button state on controller
 		{
 			if(con8Dtoggle == false) //Checks to see if it has previously been toggled (transmission motors will be running, could check there instead to check for toggle)

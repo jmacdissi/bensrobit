@@ -13,9 +13,6 @@
 #include "testTransmission.c"
 task main()
 {
-	bool rightLiftMotorForward = true; //Start right lift motor forward for transmission
-	bool leftLiftMotorForward = false; //Start left lift motor forward for transmission
-	bool con8Dtoggle = false; //Controller button 8D pressed
 	bool interrupt = false; //Stop checking for buttons
 
 	startTask(checkButtons);
