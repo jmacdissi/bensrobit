@@ -11,9 +11,10 @@
 #pragma DebuggerWindows ("Motors")
 
 bool interrupt = false; //Stops functions or tasks that have this in their code
-bool con8Rtoggle = false; //Controller button 8R pressed
+bool conToggle = false; //Controller button 8R pressed
 bool jiggleForwardIfTrue = true; //Start lift motors forward for transmission
 bool jiggleRunning = false; //Initializes the variable for the jiggle function's state, but will not be set to true until the code for it has been executed
+bool firstRun = true;
 
 void jiggle() //Move motors attached to gears slowly to align gears with transitioning gears
 {
@@ -71,23 +72,34 @@ task control()
 	}
 }
 
+
+
 task main()
 {
 	while(true)
 	{
-		if(vexRT(btn8R) == true) //Check button state on controller
+		if(vexRT[Btn8R])
 		{
-			if(con8Rtoggle == false) //Checks to see if it has previously been toggled
-			{
-				con8Rtoggle = true; //Changes toggle state
-				startTask(control);
-			}else
-			{
-				con8Rtoggle = false; //Returns toggle to off state, begins to shut off actions for when it is toggled
-				interrupt = true;
-				sleep(25); //Sleep to allow everything to shut off containing the interrupt variable
-				stopAllTasks();
-			}
+			conToggle = true;
+		}
+
+		if(vexRT[Btn8L])
+		{
+			conToggle = false;
+		}
+
+		if(conToggle == true)
+		{
+			interrupt = false;
+			startTask(control);
+			firstRun = false;
+		}
+		if(firstRun == false && conToggle == false)
+		{
+			conToggle = false; //Returns toggle to off state, begins to shut off actions for when it is toggled
+			interrupt = true;
+			sleep(25); //Sleep to allow everything to shut off containing the interrupt variable
+			stopTask(control);
 		}
 	}
 }
